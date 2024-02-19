@@ -1,46 +1,31 @@
-from abc import ABC, abstractmethod
+from continente import Continente
+from jogo_war import JogoWar
 
-
-class Observador(ABC):
-    @abstractmethod
-    def notificarCampeao(self, vencedor):
-        pass
-
-
-class Continente(Observador):
-    def __init__(self, nome):
-        self.nome = nome
-
-    def notificarCampeao(self, vencedor):
-        print(f"Região {self.nome}: Jogador {vencedor} conquistou esta região!")
-
-
-class JogoWar:
-    def __init__(self):
-        self.observadores = []
-
-    def adicionarObservador(self, observador):
-        self.observadores.append(observador)
-
-    def removerObservador(self, observador):
-        self.observadores.remove(observador)
-
-    def notificarObservadores(self, vencedor):
-        for observador in self.observadores:
-            observador.notificarCampeao(vencedor)
-
-    def jogadorVence(self, vencedor):
-        print(f"Jogador {vencedor} venceu o jogo!")
-        self.notificarObservadores(vencedor)
-
-# Exemplo de uso
 if __name__ == "__main__":
-    regioes = [Continente("América do Norte"), Continente("Ásia")]
+    
+    america_do_norte = Continente("América do Norte")
+    asia = Continente("Ásia")
 
+    
     jogo = JogoWar()
+    jogo.adicionarObservador(america_do_norte)
+    jogo.adicionarObservador(asia)
 
-    for regiao in regioes:
-        jogo.adicionarObservador(regiao)
+  
+    jogador1 = 1
+    america_do_norte.adicionarExercitos(10, jogador1)
 
- 
-    jogo.jogadorVence(1)
+    
+    jogador2 = 2
+    america_do_norte.adicionarExercitos(5, jogador2)
+
+    
+    mensagem_vitoria = jogo.jogadorVence(jogador1)
+    print(mensagem_vitoria)
+
+    
+    asia.adicionarExercitos(8, jogador2)
+
+   
+    mensagem_vitoria2 = jogo.jogadorVence(jogador2)
+    print(mensagem_vitoria2)

@@ -1,0 +1,18 @@
+1. Métodos com Responsabilidades Mistas
+O método jogadorVence está realizando duas tarefas distintas: imprimir a mensagem de vitória e notificar os observadores.
+Isso viola o princípio da responsabilidade única.
+
+2. Acesso Direto a Variáveis
+A variável __observadores é uma lista acessada diretamente fora da classe JogoWar.
+Deveria ser encapsulada, permitindo melhor controle sobre o acesso e modificação.
+
+3. Método NotificarCampeao Imprime Diretamente
+O método notificarCampeao na classe Continente imprime diretamente. 
+Isso pode limitar a flexibilidade e reutilização do código. Seria melhor retornar a mensagem e lidar com a exibição fora da classe.
+
+4. Nomes Poco Descritivos
+Algumas variáveis, como vencedor, podem ser mais descritivas para melhorar a compreensão do código.
+
+5. Falta de Validação de Entrada. (Ajustado de acordo com a implentação da nova historia)
+O método jogadorVence aceita qualquer número inteiro como vencedor, incluindo valores negativos. 
+Deveria haver validação para garantir que apenas valores válidos sejam aceitos.
